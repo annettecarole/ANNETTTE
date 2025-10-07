@@ -5,7 +5,6 @@ import {
   NotificationOutlined,
   ShoppingOutlined,
   TeamOutlined,
-  UserOutlined,
   UserSwitchOutlined,
 } from "@ant-design/icons";
 import { IResourceItem } from "@refinedev/core";
@@ -24,14 +23,15 @@ export const resources: IResourceItem[] = [
     list: "/donor",
     create: "/donor/new",
     meta: {
-      label: "Doneurs",
-      icon: <UserOutlined />,
+      label: "Personnes",
+      icon: <TeamOutlined />,
     },
   },
   {
     name: "campaign",
     list: "/campaign",
     create: "/campaign/new",
+    show: "/campaign/:id/show",
     meta: {
       label: "Campagnes",
       icon: <NotificationOutlined />,
@@ -42,7 +42,7 @@ export const resources: IResourceItem[] = [
     list: "/blood_type",
     create: "/blood_type/new",
     meta: {
-      label: "Groupes sanguins",
+      label: "Groupes sanguin",
       icon: <ExperimentOutlined />,
     },
   },
@@ -50,8 +50,9 @@ export const resources: IResourceItem[] = [
     name: "blood_bank",
     list: "/blood_bank",
     create: "/blood_bank/new",
+    edit: "/blood_bank/:id/edit",
     meta: {
-      label: "Banque de sang",
+      label: "Banques de sang",
       icon: <BankOutlined />,
     },
   },
@@ -60,7 +61,7 @@ export const resources: IResourceItem[] = [
     list: "/blood_bag",
     create: "/blood_bag/new",
     meta: {
-      label: "Poche de sang",
+      label: "Poches de sang",
       icon: <ShoppingOutlined />,
     },
   },

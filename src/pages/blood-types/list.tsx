@@ -17,6 +17,7 @@ const BloodTypeList = ({ children }: React.PropsWithChildren) => {
   return (
     <div>
       <List
+        title="Groupes sanguin"
         breadcrumb={false}
         headerButtons={() => (
           <CreateButton
@@ -32,7 +33,9 @@ const BloodTypeList = ({ children }: React.PropsWithChildren) => {
                 type: "replace",
               });
             }}
-          />
+          >
+            Ajouter
+          </CreateButton>
         )}
       >
         <Table

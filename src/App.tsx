@@ -15,6 +15,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 
 import { authProvider, dataProvider } from "./providers";
+import { i18nProvider } from "./providers/i18n";
 import { resources } from "./config";
 import { Login } from "./pages/login";
 import Layout from "./components/layout";
@@ -24,10 +25,12 @@ import DonorList from "./pages/donors/list";
 import DonorCreate from "./pages/donors/create";
 import CampaignList from "./pages/campaigns/list";
 import CampaignCreate from "./pages/campaigns/create";
+import CampaignShow from "./pages/campaigns/show";
 import BloodTypeList from "./pages/blood-types/list";
 import BloodTypeCreate from "./pages/blood-types/create";
 import BloodBank from "./pages/blood-bank/list";
 import BloodBankCreate from "./pages/blood-bank/create";
+import BloodBankEdit from "./pages/blood-bank/edit";
 import BloodBag from "./pages/blood-bag/list";
 import BloodBagCreate from "./pages/blood-bag/create";
 import BloodDonationList from "./pages/blood-donation/list";
@@ -43,6 +46,7 @@ function App() {
               <Refine
                 dataProvider={dataProvider}
                 authProvider={authProvider}
+                /* i18nProvider={i18nProvider} */
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerProvider}
                 resources={resources}
@@ -78,6 +82,7 @@ function App() {
                     <Route path="/campaign">
                       <Route index element={<CampaignList />} />
                       <Route path="new" element={<CampaignCreate />} />
+                      <Route path=":id/show" element={<CampaignShow />} />
                     </Route>
                     <Route path="/blood_type">
                       <Route index element={<BloodTypeList />} />
@@ -86,6 +91,7 @@ function App() {
                     <Route path="/blood_bank">
                       <Route index element={<BloodBank />} />
                       <Route path="new" element={<BloodBankCreate />} />
+                      <Route path=":id/edit" element={<BloodBankEdit />} />
                     </Route>
                     <Route path="/blood_bag">
                       <Route index element={<BloodBag />} />
@@ -102,7 +108,7 @@ function App() {
                 <UnsavedChangesNotifier />
                 <DocumentTitleHandler />
               </Refine>
-              <DevtoolsPanel />
+              {/* <DevtoolsPanel /> */}
             </DevtoolsProvider>
           </AntdApp>
         </ColorModeContextProvider>

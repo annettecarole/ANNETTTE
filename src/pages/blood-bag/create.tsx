@@ -39,6 +39,8 @@ const BloodBagCreate = () => {
     <DonorList>
       <Modal
         {...modalProps}
+        okText="Enregistrer"
+        cancelText="Annuler"
         mask
         onCancel={goToListPage}
         title="Ajouter une poche de sang"
@@ -52,7 +54,7 @@ const BloodBagCreate = () => {
             rules={[
               {
                 required: true,
-                message: "Veuillez entrer votre quantité",
+                message: "Veuillez entrer votre quantit?",
               },
             ]}
           >
@@ -67,7 +69,7 @@ const BloodBagCreate = () => {
 
           <Form.Item
             style={{ flex: 1 }}
-            name="blood_type"
+            name="blood_type_id"
             label="Groupe sanguin"
             rules={[
               {
@@ -85,7 +87,7 @@ const BloodBagCreate = () => {
 
           <Form.Item
             style={{ flex: 1 }}
-            name="blood_bank"
+            name="blood_bank_id"
             label="Banque de sang"
             rules={[
               {

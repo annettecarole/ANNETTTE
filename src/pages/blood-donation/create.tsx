@@ -39,8 +39,10 @@ const BloodDonationCreate = () => {
       <Modal
         {...modalProps}
         mask
+        okText="Enregistrer"
+        cancelText="Annuler"
         onCancel={goToListPage}
-        title="Ajouter une poche de sang"
+        title="Ajouter un don de sang"
         width={712}
       >
         <Form {...formProps} layout="vertical">
@@ -66,7 +68,7 @@ const BloodDonationCreate = () => {
 
           <Form.Item
             style={{ flex: 1 }}
-            name="donor"
+            name="donor_id"
             label="Donneur"
             rules={[
               {
@@ -78,13 +80,14 @@ const BloodDonationCreate = () => {
             <Select
               options={donorQuery.data?.data || []}
               {...donorSelectProps}
+              placeholder="Sélectionnez un donneur"
               size="large"
             />
           </Form.Item>
 
           <Form.Item
             style={{ flex: 1 }}
-            name="blood_bank"
+            name="blood_bank_id"
             label="Banque de sang"
             rules={[
               {

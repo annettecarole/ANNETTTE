@@ -1,15 +1,6 @@
-import React from "react";
 import DonorList from "./list";
-import {
-  DatePicker,
-  Flex,
-  Form,
-  Input,
-  InputNumber,
-  Modal,
-  Select,
-} from "antd";
-import { useModalForm } from "@refinedev/antd";
+import { Flex, Form, Input, InputNumber, Modal, Select } from "antd";
+import { useModalForm, useSelect } from "@refinedev/antd";
 import { useGo } from "@refinedev/core";
 
 const DonorCreate = () => {
@@ -30,13 +21,22 @@ const DonorCreate = () => {
     onMutationSuccess: goToListPage,
   });
 
+  const { selectProps: bloodGoupSelectProps, query: bloodGroupQuery } =
+    useSelect({
+      optionLabel: "code",
+      optionValue: "code",
+      resource: "blood_type",
+    });
+
   return (
     <DonorList>
       <Modal
         {...modalProps}
         mask
+        okText="Enregistrer"
+        cancelText="Annuler"
         onCancel={goToListPage}
-        title="Ajouter un doneur"
+        title="Ajouter une personne"
         width={712}
       >
         <Form {...formProps} layout="vertical">
@@ -129,19 +129,18 @@ const DonorCreate = () => {
 
             <Form.Item
               style={{ flex: 1 }}
-              name="date"
-              label="Date"
+              name="blood_group"
+              label="Groupe sanguin"
               rules={[
                 {
                   required: true,
-                  message: "Veuillez sélectionner une date",
+                  message: "Veuillez entrer le type de sang",
                 },
               ]}
             >
-              <DatePicker
-                placeholder="Sélectionnez une date"
-                style={{ width: "100%" }}
-                format="YYYY-MM-DD"
+              <Select
+                options={bloodGroupQuery.data?.data || []}
+                {...bloodGoupSelectProps}
                 size="large"
               />
             </Form.Item>

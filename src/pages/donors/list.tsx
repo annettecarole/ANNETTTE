@@ -11,7 +11,7 @@ import { Space, Table } from "antd";
 
 const DonorList = ({ children }: React.PropsWithChildren) => {
   const go = useGo();
-  const { tableProps, filters } = useTable({
+  const { tableProps } = useTable({
     resource: "donor",
   });
   return (
@@ -32,7 +32,9 @@ const DonorList = ({ children }: React.PropsWithChildren) => {
                 type: "replace",
               });
             }}
-          />
+          >
+            Ajouter
+          </CreateButton>
         )}
       >
         <Table
@@ -51,14 +53,26 @@ const DonorList = ({ children }: React.PropsWithChildren) => {
             )}
           />
           <Table.Column
-            dataIndex="phone_number"
-            title="Numéro de téléphone"
-            render={(_, donor) => <Text>{donor.phone_number}</Text>}
+            dataIndex="blood_group"
+            title="Groupe sanguin"
+            render={(_, donor) => <Text>{donor.blood_group}</Text>}
+          />
+          <Table.Column
+            dataIndex="sex"
+            title="Sexe"
+            render={(_, donor) => (
+              <Text>{donor.sex === "M" ? "Masculin" : "Feminin"}</Text>
+            )}
           />
           <Table.Column
             dataIndex="age"
             title="Age"
             render={(_, donor) => <Text>{donor.age}</Text>}
+          />
+          <Table.Column
+            dataIndex="phone_number"
+            title="Numéro de téléphone"
+            render={(_, donor) => <Text>{donor.phone_number}</Text>}
           />
           <Table.Column
             dataIndex="id"

@@ -27,11 +27,26 @@ const CampaignCreate = () => {
       <Modal
         {...modalProps}
         mask
+        okText="Enregistrer"
+        cancelText="Annuler"
         onCancel={goToListPage}
         title="Ajouter une campagne"
         width={712}
       >
         <Form {...formProps} layout="vertical">
+          <Form.Item
+            style={{ flex: 1 }}
+            name="location"
+            label="Lieu"
+            rules={[
+              {
+                required: true,
+                message: "Veuillez entrer un lieu",
+              },
+            ]}
+          >
+            <Input placeholder="Lieu de la campagne" size="large" />
+          </Form.Item>
           <Flex gap={16}>
             <Form.Item
               style={{ flex: 1 }}

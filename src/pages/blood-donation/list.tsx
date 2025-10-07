@@ -17,6 +17,7 @@ const BloodDonationList = ({ children }: React.PropsWithChildren) => {
   return (
     <div>
       <List
+        title="Dons de sang"
         breadcrumb={false}
         headerButtons={() => (
           <CreateButton
@@ -32,7 +33,9 @@ const BloodDonationList = ({ children }: React.PropsWithChildren) => {
                 type: "replace",
               });
             }}
-          />
+          >
+            Ajouter
+          </CreateButton>
         )}
       >
         <Table
@@ -50,13 +53,17 @@ const BloodDonationList = ({ children }: React.PropsWithChildren) => {
           <Table.Column
             dataIndex="blood_bank"
             title="Banque de sang"
-            render={(_, blood_bag) => <Text>{blood_bag.blood_bank}</Text>}
+            render={(_, blood_bag) => <Text>{blood_bag.blood_bank.name}</Text>}
           />
 
           <Table.Column
             dataIndex="donor"
             title="Donneur"
-            render={(_, blood_bag) => <Text>{blood_bag.donor}</Text>}
+            render={(_, blood_bag) => (
+              <Text>
+                {blood_bag.donor.name} {blood_bag.donor.surname}
+              </Text>
+            )}
           />
 
           <Table.Column

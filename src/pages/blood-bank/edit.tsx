@@ -1,10 +1,13 @@
-import DonorList from "./list";
+import BloodBankList from "./list";
 import { Form, Input, Modal, Select } from "antd";
 import { useModalForm, useSelect } from "@refinedev/antd";
 import { useGo } from "@refinedev/core";
+import { useParams } from "react-router";
 
-const BloodBankCreate = () => {
+const BloodBankEdit = () => {
+  const { id } = useParams<{ id: string }>();
   const go = useGo();
+
   const goToListPage = () => {
     go({
       to: { resource: "blood_bank", action: "list" },
@@ -14,10 +17,11 @@ const BloodBankCreate = () => {
   };
 
   const { formProps, modalProps } = useModalForm({
-    action: "create",
+    action: "edit",
     defaultVisible: true,
-    resource: "blood_bank/",
+    resource: "blood_bank",
     mutationMode: "pessimistic",
+    id,
     onMutationSuccess: goToListPage,
   });
 
@@ -29,14 +33,14 @@ const BloodBankCreate = () => {
     });
 
   return (
-    <DonorList>
+    <BloodBankList>
       <Modal
         {...modalProps}
         mask
-        okText="Enregistrer"
+        okText="Mettre à jour"
         cancelText="Annuler"
         onCancel={goToListPage}
-        title="Ajouter une banque de sang"
+        title="Modifier une banque de sang"
         width={712}
       >
         <Form {...formProps} layout="vertical">
@@ -85,8 +89,8 @@ const BloodBankCreate = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </DonorList>
+    </BloodBankList>
   );
 };
 
-export default BloodBankCreate;
+export default BloodBankEdit;

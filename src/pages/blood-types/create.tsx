@@ -27,6 +27,8 @@ const BloodTypeCreate = () => {
       <Modal
         {...modalProps}
         mask
+        okText="Enregistrer"
+        cancelText="Annuler"
         onCancel={goToListPage}
         title="Ajouter un groupe sanguin"
         width={512}
